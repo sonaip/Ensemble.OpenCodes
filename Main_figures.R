@@ -3,8 +3,17 @@
 # Figures for the main analyses (Figurea 4 to 6)
 
 # ---- Install necessary packages and import data ----
-source('loadPackages,R')
+source('loadPackages.R')
 dat_interval <- readRDS('rawData.rds')
+# calculate mean
+m_exp1 <- dat_interval$exp1 %>% 
+  group_by(condition) %>% 
+  summarise(pse = mean(alpha), n = n(), se = sd(alpha)/sqrt(n-1),
+            jnd = mean(beta), se_jnd = sd(beta)/sqrt(n-1))
+
+m_exp2 <- dat_interval$exp2 %>% group_by(condition) %>% 
+  summarise(pse = mean(alpha), n = n(), se = sd(alpha)/sqrt(n-1),
+            jnd = mean(beta), se_jnd = sd(beta)/sqrt(n-1))
 
 ## ---- Figure 4 ----
 
