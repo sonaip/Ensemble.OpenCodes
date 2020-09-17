@@ -5,7 +5,7 @@ library(cowplot)
 
 #---- Read and prepare the data ----
 
-data <- readRDS('rrawData.rds')
+data <- readRDS('rawData.rds')
 dur <- data$conds
 data_e1 <- data$exp1
 data_e2 <- data$exp2 
@@ -295,14 +295,9 @@ fig_mod_pred_e2 <- ggplot(data.frame(set=factor(c(1,2,3)), pred_a=ameans_e2, pre
   theme(legend.position = c(0.8, 0.9), legend.title = element_blank()) + 
   ylim(c(500, 900))
 
-# Save model prediction figure for Exp 2
-ggsave('figures/mod_pred_e2.png', fig_mod_pred_e2, width=4.5, height=3)
-
 # Combine model prediction figures into one and save
 fig7= plot_grid(fig_mod_pred_e1, fig_mod_pred_e2, nrow = 1, labels = c("a","b"))
 fig7
-ggsave('figures/fig7.png', fig7, width = 8, height = 4, dpi = 600)
-ggsave('figures/fig7.pdf', fig7, width = 8, height = 4, dpi = 600)
 
 # ---- Individual participant model fits ----
 
