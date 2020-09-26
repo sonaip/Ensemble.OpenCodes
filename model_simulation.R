@@ -1,7 +1,11 @@
+# In this code, we compared multiple different ensemble means
+# for the observed data:
+# Arithmetic, Hamonic, Weighted and Geometric means
 
+
+# load packages
 library(tidyverse)
 library(cowplot)
-
 
 #---- Read and prepare the data ----
 
@@ -10,6 +14,7 @@ dur <- data$conds
 data_e1 <- data$exp1
 data_e2 <- data$exp2 
 
+# get differnt means
 means <- group_by(dur, sequence) %>% summarize(ari_mean=mean(duration), 
                                                geom_mean=(prod(duration))^(1/5),
                                                harm_mean=1/mean(1/duration),
@@ -171,45 +176,6 @@ harm_sim_fit_e2 <- function(par) {
   return(sum((rowMeans(harm_simulation(par)-dat_e2_means)^2)))
 }
 
-# Grid search to find best parameters for harmonic mean 
-# Here optimization seems to be necessary, since dependence on parameters is more complex
-# hfitval <- array(0, dim=c(11,11,11))
-# 
-# p1 <- seq(0, 0.2, 0.02)
-# p2 <- seq(-60, 140, 20)
-# p3 <- seq(0, 100, 10)
-# for(i in 1:length(p1)) {
-#   for(j in 1:length(p2)) {
-#     for(k in 1:length(p3)) {
-#       hfitval[i,j,k] <- harm_sim_fit_e1(c(p1[i], p2[j], p3[k]))
-#     }
-#   }
-# }
-# 
-# Find the best parameters based on the grid search
-# par_coords <- which(hfitval==min(hfitval), arr.ind=TRUE)
-# par <- c(p1[par_coords[1]], p2[par_coords[2]], p3[par_coords[3]])
-# hmeans_e1 <- rowMeans(harm_simulation(par))
-# # 
-# 
-# hfitval <- array(0, dim=c(11,11,11))
-#
-# Grid search for harmonic mean for experiment 2
-# p1 <- seq(0, 0.2, 0.02)
-# p2 <- seq(-60, 140, 20)
-# p3 <- seq(0, 100, 10)
-# for(i in 1:length(p1)) {
-#   for(j in 1:length(p2)) {
-#     for(k in 1:length(p3)) {
-#       hfitval[i,j,k] <- harm_sim_fit_e2(c(p1[i], p2[j], p3[k]))
-#     }
-#   }
-# }
-# 
-# Find best parameters of grid search for harmonic mean for exp 2
-# par_coords <- which(hfitval==min(hfitval), arr.ind=TRUE)
-# par <- c(p1[par_coords[1]], p2[par_coords[2]], p3[par_coords[3]])
-# hmeans_e2 <- rowMeans(harm_simulation(par))
 
 # Load results of the above commented simulation + optimization from a file
 load('hmeans.rdata')
@@ -298,6 +264,7 @@ fig_mod_pred_e2 <- ggplot(data.frame(set=factor(c(1,2,3)), pred_a=ameans_e2, pre
 # Combine model prediction figures into one and save
 fig7= plot_grid(fig_mod_pred_e1, fig_mod_pred_e2, nrow = 1, labels = c("a","b"))
 fig7
+ggsave('fig7.pdf', fig7, width = 7, height = 3)
 
 # ---- Individual participant model fits ----
 
