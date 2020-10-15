@@ -195,9 +195,9 @@ fig_scatter2 <- ggplot (dat_scatter2, aes(x= s13, y = s12,colour = com))+
   # add comparison boundary
   geom_abline(intercept = (-300/77), slope = (-73/77),color = 'darkgrey', linetype = 'dashed')+
   #add mean point
-  geom_point(aes(x= -33.80, y =-13.96), color = 'black',size = 2)+
-  geom_errorbar(aes(x= -33.80, ymin = (-13.96-12.51), ymax= (-13.96+12.51)), width = 5, size = 0.3, color = 'black')+
-  geom_errorbarh(aes(y= -13.96, xmin = (-33.80-11.19), xmax= (-33.80+11.19)), height = 5, size = 0.3, color = 'black')+
+  geom_point(aes(x= 13.96, y =-33.80), color = 'black',size = 2)+
+  geom_errorbar(aes(x= 13.96, ymin = (-33.80-12.51), ymax= (-33.80+12.51)), width = 5, size = 0.3, color = 'black')+
+  geom_errorbarh(aes(y= -33.80, xmin = (13.96-11.19), xmax= (13.96+11.19)), height = 5, size = 0.3, color = 'black')+
   ylim(c(-175,150))+
   xlim(c(-150,250))+
   ggtitle('Visual')+
