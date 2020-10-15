@@ -1,5 +1,5 @@
 
-## Ensemble perception in the time domain: evidence in favor of logarithmic encoding of time intervals
+## Logarithmic encoding of ensemble time intervals
 
 __Yue Ren, Fredrik Allenmark, Hermann J. Müller, Zhuanghua Shi__
 General Experimental Psychology, LMU Munich, Munich, Germany
@@ -13,3 +13,5 @@ Experimental data and analysis code:
 * model_simulation.R: compared four different ensemble models: Arithmetic, Harmonic, Weighted, and Geometric means
 * rawData.rds: raw PSE/JND estimated from UML procedures
 * sub_trialseq.mat: raw UML trial sequences and responses. 
+
+Published in _Scientific Reports_, DOI:10.1038/s41598-020-75191-6. 
